@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Menu from "./components/Menu";
+import Header from "./components/Header";
+import List from "./components/List";
+import ComingUp from "./components/ComingUp";
+import { useContext, useState } from "react";
+import { Context } from "./Context";
+import Home from "./components/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [homepage, setHomepage] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header homepage={homepage} />
+      <div className="main">
+        <Menu setHomepage={setHomepage} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/comingup" element={<ComingUp />} />
+          <Route path="/list" element={<List />} />
+        </Routes>
+      </div>
     </div>
   );
 }
