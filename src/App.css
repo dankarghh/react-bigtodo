@@ -1,3 +1,13 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 App h1,
 h2,
 h3,
@@ -5,43 +15,314 @@ h4,
 p {
   padding: 0;
   margin: 0;
+  font-size: 1.2rem;
 }
+root {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Define styles for header */
+
+.header {
+  background-color: #375c43;
+  padding: 0.1rem 1rem;
+  margin: 0;
+  color: white;
+}
+
+.header h1 {
+  background-color: #375c43;
+  padding: 0.1rem 0rem;
+  margin: 0;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+/* Define styles for Menu */
+
 .menu {
   width: 200px;
-  background-color: rgb(202, 202, 202);
+  background-color: #fbfbfb;
   height: 100vh;
+  padding: 0rem;
+  padding-top: 2rem;
 }
-.header {
-  background-color: #61dafb;
+.menu-icon {
+  width: 24px;
+  padding-right: 5px;
 }
+.menu-list-icon {
+  width: 10px;
+  margin-right: 1rem;
+}
+.menu h2 {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.menu-item:hover {
+  background-color: #d3d1d1;
+}
+
+.menu-list {
+  margin-left: 2rem;
+}
+.menu-new-list {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding-top: 1rem;
+}
+.menu-new-list-input {
+  background: none;
+  border: solid 1px gray;
+  border-radius: 15px;
+  font-family: "Poppins", sans-serif;
+  padding: 5px;
+  font-size: 1.4rem;
+  width: 100%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.menu-list-item--active {
+  background-color: #757575;
+}
+.menu-new-list-input::placeholder {
+  font-size: 1.4rem;
+  font-family: "Poppins", sans-serif;
+  padding-left: 1rem;
+}
+.menu-new-list-icon {
+  position: absolute;
+  width: 24px;
+  right: 1.1rem;
+  cursor: pointer;
+}
+
 .main {
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
+.task-icon {
+  width: 16px;
+  cursor: pointer;
+}
+.delete-list-icon {
+  height: 1.6rem;
+}
 .task-wrapper {
-  padding: 1rem;
+  padding: 1rem 0rem 0rem;
 }
 .task__main-elements {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 5px;
 }
-
-/* Define styles for homepage component  */
-.home-container {
-  padding-left: 1rem;
+.task__main-elements-left {
+  display: flex;
+  align-items: center;
 }
-.home-list-name {
+/* .task__main-elements-left img {
+  padding-right: 10px;
+} */
+.task__main-elements-right {
+  display: flex;
+  align-items: center;
+}
+.task__main-elements-right img {
+  margin-left: 1rem;
+}
+.task__task-notes {
+  padding-left: 2.5rem;
+  font-style: italic;
+}
+.list__container {
+  max-width: 600px;
+  padding: 2rem;
+  padding-top: 3rem;
+}
+.list__list-name {
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: flex;
+  align-content: center;
   padding-bottom: 1rem;
 }
-.home-task {
+.list__active-list {
+  padding-bottom: 1rem;
+}
+.task__task-name {
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding-left: 1rem;
+}
+.task__task-date {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+/* Define styles for homepage component  */
+.home__container {
+  max-width: 600px;
+  padding: 2rem;
+  padding-top: 3rem;
+}
+.home__list {
+  padding-bottom: 1rem;
+}
+.home__coming-up {
+  padding-bottom: 2rem;
+  margin-bottom: 5px;
+}
+.home__list-name {
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}
+.home__task {
   padding-bottom: 0.5rem;
   padding-right: 2rem;
 }
-.home-task-details {
+.home__task-details {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* margin-bottom: 5px; */
 }
-.home-task-completed {
+.home__task-details--left {
+  display: flex;
+  align-items: center;
+}
+.home__task-name--completed {
   text-decoration: line-through;
+  cursor: pointer;
+}
+.home__task-name {
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding-left: 1rem;
+}
+.home__no-task {
+  font-size: 1.3rem;
+}
+
+.home__task-notes {
+  font-style: italic;
+  font-size: 1.3rem;
+}
+
+/* Define styles for new task form */
+
+.form-new-task {
+  box-shadow: 3px 0px 5px 3px rgba(0, 0, 0, 0.24);
+  margin-top: 2rem;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.form-new-task__title {
+  border: none;
+  padding: 10px;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  font-family: inherit;
+}
+.form-new-task__title::placeholder {
+  font-size: 1.5rem;
+  font-family: inherit;
+}
+.form-new-task__title:focus {
+  outline: none;
+}
+.coming-up {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.form-new-task__date {
+  margin: 1rem;
+  border: none;
+  font-family: inherit;
+  font-size: 1.2rem;
+  color: #757575;
+}
+.form-new-task__date:focus {
+  outline: none;
+}
+.form-new-task__notes {
+  margin-left: 1rem;
+  border-radius: 5px;
+  padding: 5px 15px;
+  border: solid 1px #757575;
+  font-size: 1.2rem;
+}
+.form-new-task__notes:active {
+  outline: none;
+}
+.form-new-task__notes::placeholder {
+  font-family: inherit;
+  font-size: 1.2rem;
+}
+.form-new-task__top {
+  display: flex;
+  justify-content: space-between;
+}
+.form-new-task__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.form-new-task button {
+  align-self: flex-end;
+  margin-right: 1rem;
+}
+input {
+  font-family: inherit;
+}
+input:focus {
+  outline: none;
+}
+.btn {
+  font: inherit;
+  font-weight: 500;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+.btn-primary {
+  background-color: #375c43;
+  border: none;
+  color: white;
+}
+.btn-secondary {
+  background-color: white;
+  border: solid 1px #375c43;
+
+  color: #375c43;
 }

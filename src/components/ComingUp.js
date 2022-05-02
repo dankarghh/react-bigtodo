@@ -2,11 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../Context";
 import { addDays } from "date-fns";
 import ListItem from "./ListItem";
+import ComingUpListItem from "./ComingUpListItem";
 
 function ComingUp() {
-  const { lists } = useContext(Context);
+  const { lists, markTaskComplete } = useContext(Context);
   const [allTasks, setAllTasks] = useState([]);
-  let sortedList;
+
   useEffect(() => {
     let newList = [];
     lists.forEach(list => {
@@ -41,34 +42,59 @@ function ComingUp() {
   });
 
   return (
-    <div>
-      {/* <h1>Today</h1>
-      {todaysTasks.map(task => {
-        return <h4>{task.taskName}</h4>;
-      })} */}
-      <h1>Today</h1>
-      {todaysTasks.map(task => {
-        return (
-          <ListItem
-            id={task.id}
-            taskName={task.taskName}
-            notes={task.notes}
-            // icon={icon}
-            dueDate={task.dueDate}
-            // markTaskComplete={markTaskComplete}
-            // deleteTask={deleteTask}
-            // handleChangeTask={handleChangeTask}
-          />
-        );
-      })}
-      <h2>Tomorrow</h2>
-      {tomorrowsTasks.map(task => {
-        return <h4>{task.taskName}</h4>;
-      })}
-      <h2>Later this week</h2>
-      {thisWeeksTasks.map(task => {
-        return <h4>{task.taskName}</h4>;
-      })}
+    <div className="home__container">
+      <div className="home__coming-up">
+        <h2 className="home__list-name">Today</h2>
+        {todaysTasks.map(task => {
+          const icon = task.completed
+            ? "./complete_task.svg"
+            : "./incomplete_task.svg";
+          return (
+            <ComingUpListItem
+              taskName={task.taskName}
+              completed={task.completed}
+              id={task.id}
+              markTaskComplete={markTaskComplete}
+              icon={icon}
+            />
+          );
+        })}
+      </div>
+      <div className="home__coming-up">
+        <h2 className="home__list-name">Tomorrow</h2>
+        {tomorrowsTasks.map(task => {
+          const icon = task.completed
+            ? "./complete_task.svg"
+            : "./incomplete_task.svg";
+          return (
+            <ComingUpListItem
+              taskName={task.taskName}
+              completed={task.completed}
+              id={task.id}
+              markTaskComplete={markTaskComplete}
+              icon={icon}
+            />
+          );
+        })}
+      </div>
+
+      <div className="home__coming-up">
+        <h2 className="home__list-name">Later this week</h2>
+        {thisWeeksTasks.map(task => {
+          const icon = task.completed
+            ? "./complete_task.svg"
+            : "./incomplete_task.svg";
+          return (
+            <ComingUpListItem
+              taskName={task.taskName}
+              completed={task.completed}
+              id={task.id}
+              markTaskComplete={markTaskComplete}
+              icon={icon}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

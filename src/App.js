@@ -3,10 +3,10 @@ import Menu from "./components/Menu";
 import Header from "./components/Header";
 import List from "./components/List";
 import ComingUp from "./components/ComingUp";
-import { useContext, useState } from "react";
-import { Context } from "./Context";
+import { useState } from "react";
+
 import Home from "./components/Home";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [homepage, setHomepage] = useState(false);

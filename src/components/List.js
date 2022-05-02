@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { Context } from "../Context";
 import { nanoid } from "nanoid";
 import ListItem from "./ListItem";
+import { Navigate, useNavigate } from "react-router";
 
 export default function List() {
-  console.log(new Date().toISOString().slice(0, 10));
-
   const {
     activeList,
     markTaskComplete,
@@ -19,10 +18,22 @@ export default function List() {
   const [newTaskDate, setNewTaskDate] = useState("");
   // const [activeListTaskList, setActiveListTaskList] = useState([]);
   const [hovered, setHovered] = useState(false);
+  const [newTaskForm, setNewTaskForm] = useState(
+    activeList.taskList.length > 0 ? true : false
+  );
+  const navigate = useNavigate();
+  const inputRef = useRef();
 
   useEffect(() => {
     setHovered(false);
+    setNewTaskForm(activeList.taskList.length > 0 ? false : true);
   }, [activeList]);
+
+  useEffect(() => {
+    if (newTaskForm === true) {
+      inputRef.current.focus();
+    }
+  }, [newTaskForm]);
 
   function createTask(event, newTaskName, newTaskNotes, newTaskDate) {
     event.preventDefault();
@@ -45,8 +56,16 @@ export default function List() {
       setNewTaskName("");
       setNewTaskDate("");
       setNewTaskNotes("");
+      setNewTaskForm(false);
     }
   }
+
+  function toggleTaskForm(e) {
+    e.preventDefault();
+    setNewTaskForm(prevState => !prevState);
+    inputRef.current.focus();
+  }
+
   function deleteTask(event, id) {
     const newTaskList = activeListTaskList.filter(task => task.id !== id);
     activeList.taskList = newTaskList;
@@ -62,7 +81,16 @@ export default function List() {
     setActiveListTaskList(updatedTaskList);
   }
 
+  function handleDeleteList(event) {
+    deleteList(event);
+    navigate("/");
+  }
+
   let taskListElements = "";
+
+  // if (newTaskForm) {
+  //   inputRef.current.focus();
+  // }
 
   if (activeList && activeList.taskList.length > 0) {
     taskListElements = activeList.taskList.map(task => {
@@ -85,18 +113,20 @@ export default function List() {
   }
 
   return (
-    <div>
+    <div className="list__container">
       {activeList ? (
-        <div>
+        <div className="list__active-list">
           <h2
+            className="list__list-name"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
             {activeList.name}{" "}
             {hovered && (
               <img
-                onClick={event => deleteList(event)}
+                onClick={event => handleDeleteList(event)}
                 src="./delete_list.svg"
+                className="task-icon delete-list-icon"
               ></img>
             )}
           </h2>
@@ -105,34 +135,58 @@ export default function List() {
         </div>
       ) : null}
 
-      <form className="form-new-task">
-        <input
-          placeholder="task name"
-          onChange={event => setNewTaskName(event.target.value)}
-          value={newTaskName}
-        />
-        <input
-          placeholder="notes (optional)"
-          onChange={event => setNewTaskNotes(event.target.value)}
-          value={newTaskNotes}
-        />
-        <label>
-          Due Date
-          <input
-            type="date"
-            placeholder="due date"
-            onChange={event => setNewTaskDate(event.target.value)}
-            value={newTaskDate}
-          />
-        </label>
-        <button
-          onClick={event =>
-            createTask(event, newTaskName, newTaskNotes, newTaskDate)
-          }
-        >
-          CREATE NEW TASK
+      {newTaskForm ? (
+        <form className="form-new-task">
+          <div className="form-new-task-body">
+            <div className="form-new-task__top">
+              <input
+                ref={inputRef}
+                className="form-new-task__title"
+                placeholder="Add a task"
+                onChange={event => setNewTaskName(event.target.value)}
+                value={newTaskName}
+              />
+              <input
+                className="form-new-task__date"
+                type="date"
+                placeholder="due date"
+                onChange={event => setNewTaskDate(event.target.value)}
+                value={newTaskDate}
+              />{" "}
+            </div>
+
+            <div className="form-new-task__bottom">
+              <input
+                className="form-new-task__notes"
+                placeholder="notes (optional)"
+                onChange={event => setNewTaskNotes(event.target.value)}
+                value={newTaskNotes}
+              />
+              <div className="btn-container">
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={e => toggleTaskForm(e)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={event =>
+                    createTask(event, newTaskName, newTaskNotes, newTaskDate)
+                  }
+                >
+                  Add task
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      ) : (
+        <button className="btn btn-primary" onClick={e => setNewTaskForm(e)}>
+          Add new Task
         </button>
-      </form>
+      )}
     </div>
   );
 }

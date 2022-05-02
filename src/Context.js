@@ -4,19 +4,20 @@ import { nanoid } from "nanoid";
 const Context = React.createContext();
 
 function ContextProvider(props) {
-  const [lists, setLists] = useState(
-    JSON.parse(localStorage.getItem("lists") || [])
+  const LOCAL_STORAGE_LISTS = JSON.parse(localStorage.getItem("lists"));
+  const LOCAL_STORAGE_ACTIVE_LIST = JSON.parse(
+    localStorage.getItem("activeList")
+  );
+  const [lists, setLists] = useState(LOCAL_STORAGE_LISTS || []);
+  // const navigate = useNavigate();
+
+  // const [lists, setLists] = useState([]);
+
+  const [activeList, setActiveList] = useState(
+    LOCAL_STORAGE_ACTIVE_LIST || null
   );
 
-  const [activeList, setActiveList] = useState(null);
   const [activeListTaskList, setActiveListTaskList] = useState([]);
-
-  // React.useEffect(() => {
-  //   const data = localStorage.getItem("lists");
-  //   if (data) {
-  //     setLists(JSON.parse(data));
-  //   }
-  // });
 
   function createNewList(event, newListName) {
     event.preventDefault();
@@ -30,6 +31,7 @@ function ContextProvider(props) {
     };
     setActiveList(newListItem);
     setLists([...lists, newListItem]);
+    // navigate("/list");
   }
   function markTaskComplete(event, id) {
     const selectedTask = activeList.taskList.find(task => task.id === id);
