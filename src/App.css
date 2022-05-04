@@ -185,6 +185,7 @@ p {
 }
 .task-wrapper {
   padding: 1rem 0rem 0rem;
+  border-bottom: solid 1px #b4b3b33d;
 }
 .task__main-elements {
   display: flex;
@@ -217,7 +218,7 @@ p {
   border: none;
 } */
 .list__container {
-  width: 600px;
+  width: 900px;
   padding: 2rem;
   padding-top: 3rem;
 }
@@ -239,7 +240,7 @@ p {
 }
 /* Define styles for homepage component  */
 .home__container {
-  width: 600px;
+  width: 900px;
   padding: 2rem;
   padding-top: 3rem;
 }
@@ -249,6 +250,7 @@ p {
 .home__coming-up {
   padding-bottom: 2rem;
   margin-bottom: 5px;
+  border-bottom: solid 1px #b4b3b33d;
 }
 .home__list-name {
   font-weight: 600;
@@ -258,12 +260,12 @@ p {
 .home__task {
   padding-bottom: 0.5rem;
   padding-right: 2rem;
+  border-bottom: solid 1px #b4b3b33d;
 }
 .home__task-details {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* margin-bottom: 5px; */
 }
 .home__task-details--left {
   display: flex;
@@ -284,6 +286,7 @@ p {
 }
 .home__task-notes {
   font-style: italic;
+  margin-left: 3rem;
 }
 
 /* Define styles for new task form */
