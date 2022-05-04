@@ -8,6 +8,12 @@ html {
   font-size: 62.5%;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 App h1,
 h2,
 h3,
@@ -15,11 +21,11 @@ h4,
 p {
   padding: 0;
   margin: 0;
-  font-size: 1.2rem;
 }
-root {
-  margin: 0;
-  padding: 0;
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 body {
@@ -42,7 +48,10 @@ h3,
 h4 {
   font-family: "Poppins", sans-serif;
 }
-
+p {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
 /* Define styles for header */
 
 .header {
@@ -50,6 +59,15 @@ h4 {
   padding: 0.1rem 1rem;
   margin: 0;
   color: white;
+}
+
+.footer {
+  background-color: #375c43;
+  padding: 1rem 1rem;
+  margin-top: auto;
+  color: white;
+  width: 100%;
+  text-align: center;
 }
 
 .header h1 {
@@ -67,27 +85,53 @@ h4 {
 
 .menu {
   width: 200px;
-  background-color: #fbfbfb;
-  height: 100vh;
+  background-color: #dddbdb;
+  height: 100%;
   padding: 0rem;
   padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 2s;
 }
+
+.menu-open {
+  width: 300px;
+  transition: all 2s;
+}
+.menu-open h2 {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+
 .menu-icon {
-  width: 24px;
+  width: 28px;
   padding-right: 5px;
 }
 .menu-list-icon {
   width: 10px;
   margin-right: 1rem;
 }
-.menu h2 {
+.menu-item-toggler {
+  display: none;
+}
+/* .menu h2 {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+} */
+
+.menu-item {
   font-size: 1.4rem;
   display: flex;
   align-items: center;
   padding: 1rem;
 }
+
 .menu-item:hover {
-  background-color: #d3d1d1;
+  background-color: #b4b3b3;
 }
 
 .menu-list {
@@ -102,7 +146,7 @@ h4 {
 .menu-new-list-input {
   background: none;
   border: solid 1px gray;
-  border-radius: 15px;
+  border-radius: 25px;
   font-family: "Poppins", sans-serif;
   padding: 5px;
   font-size: 1.4rem;
@@ -110,8 +154,8 @@ h4 {
   margin-left: 1rem;
   margin-right: 1rem;
 }
-.menu-list-item--active {
-  background-color: #757575;
+.menu-item--active {
+  background-color: #b4b3b3;
 }
 .menu-new-list-input::placeholder {
   font-size: 1.4rem;
@@ -126,8 +170,11 @@ h4 {
 }
 
 .main {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  /* display: grid;
+  grid-template-columns: 1fr 3fr; */
+  height: 100%;
+  display: flex;
+  position: relative;
 }
 .task-icon {
   width: 16px;
@@ -144,6 +191,9 @@ h4 {
   justify-content: space-between;
   padding-bottom: 5px;
 }
+.task__main-elements {
+  font-size: 1.4rem;
+}
 .task__main-elements-left {
   display: flex;
   align-items: center;
@@ -159,17 +209,21 @@ h4 {
   margin-left: 1rem;
 }
 .task__task-notes {
-  padding-left: 2.5rem;
+  margin-left: 2.5rem;
   font-style: italic;
+  font-size: 1.4rem;
 }
+/* .task__task-notes input {
+  border: none;
+} */
 .list__container {
-  max-width: 600px;
+  width: 600px;
   padding: 2rem;
   padding-top: 3rem;
 }
 .list__list-name {
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   display: flex;
   align-content: center;
   padding-bottom: 1rem;
@@ -178,17 +232,14 @@ h4 {
   padding-bottom: 1rem;
 }
 .task__task-name {
-  font-size: 1.3rem;
-  font-weight: 500;
   padding-left: 1rem;
 }
 .task__task-date {
-  font-size: 1.3rem;
-  font-weight: 500;
+  white-space: nowrap;
 }
 /* Define styles for homepage component  */
 .home__container {
-  max-width: 600px;
+  width: 600px;
   padding: 2rem;
   padding-top: 3rem;
 }
@@ -201,7 +252,7 @@ h4 {
 }
 .home__list-name {
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   padding-bottom: 1rem;
 }
 .home__task {
@@ -224,16 +275,15 @@ h4 {
 }
 .home__task-name {
   cursor: pointer;
-  font-size: 1.3rem;
+
   padding-left: 1rem;
 }
-.home__no-task {
-  font-size: 1.3rem;
-}
 
+.home__task-date {
+  white-space: nowrap;
+}
 .home__task-notes {
   font-style: italic;
-  font-size: 1.3rem;
 }
 
 /* Define styles for new task form */
@@ -268,7 +318,7 @@ h4 {
   margin: 1rem;
   border: none;
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #757575;
 }
 .form-new-task__date:focus {
@@ -277,7 +327,7 @@ h4 {
 .form-new-task__notes {
   margin-left: 1rem;
   border-radius: 5px;
-  padding: 5px 15px;
+  padding: 10px 15px;
   border: solid 1px #757575;
   font-size: 1.2rem;
 }
@@ -286,7 +336,7 @@ h4 {
 }
 .form-new-task__notes::placeholder {
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .form-new-task__top {
   display: flex;
@@ -311,9 +361,9 @@ input:focus {
 .btn {
   font: inherit;
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   border-radius: 5px;
-  padding: 5px 15px;
+  padding: 10px 15px;
 }
 .btn-primary {
   background-color: #375c43;
@@ -325,4 +375,47 @@ input:focus {
   border: solid 1px #375c43;
 
   color: #375c43;
+}
+
+@media screen and (max-width: 600px) {
+  .menu-open {
+    position: absolute;
+  }
+  .menu-item h2 {
+    font-size: 1.6rem;
+  }
+  .home__list-name h2 {
+    font-size: 4rem;
+  }
+  .menu {
+    padding-top: 0rem;
+  }
+  .form-new-task {
+    width: ;
+  }
+  .form-new-task__bottom {
+    display: block;
+  }
+  .form-new-task__top {
+    display: block;
+  }
+
+  .btn-container {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .menu-new-list-input {
+    font-size: 2rem;
+  }
+  .menu-closed {
+    width: 50px;
+    transition: width 0.1s;
+  }
+  .menu-open {
+    width: 300px;
+  }
+}
+.section-heading {
+  text-align: center;
 }

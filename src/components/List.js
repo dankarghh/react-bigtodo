@@ -107,6 +107,7 @@ export default function List() {
           markTaskComplete={markTaskComplete}
           deleteTask={deleteTask}
           handleChangeTask={handleChangeTask}
+          newTaskForm={newTaskForm}
         />
       );
     });

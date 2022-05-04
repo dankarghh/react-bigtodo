@@ -4,9 +4,9 @@ import Header from "./components/Header";
 import List from "./components/List";
 import ComingUp from "./components/ComingUp";
 import { useState } from "react";
-
 import Home from "./components/Home";
 import { Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer";
 
 function App() {
   const [homepage, setHomepage] = useState(false);
@@ -22,6 +22,7 @@ function App() {
           <Route path="/list" element={<List />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }

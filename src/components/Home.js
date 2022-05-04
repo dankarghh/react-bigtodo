@@ -29,7 +29,7 @@ export default function Home() {
                 </div>
                 <p className="home__task-date">{task.dueDate}</p>
               </div>
-              <div className="home__task-notes">{task.notes}</div>
+              <p className="home__task-notes">{task.notes}</p>
             </div>
           );
         })}
@@ -37,5 +37,10 @@ export default function Home() {
     );
   });
 
-  return <div className="home__container"> {homeElements} </div>;
+  return (
+    <div className="home__container">
+      <h1 className="section-heading">All tasks</h1>
+      {homeElements}{" "}
+    </div>
+  );
 }

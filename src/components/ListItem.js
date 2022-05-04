@@ -8,8 +8,7 @@ export default function ListItem(props) {
 
   useEffect(() => {
     setEditListItem(false);
-    console.log(activeList);
-  }, [activeList]);
+  }, [activeList, props.newTaskForm]);
 
   return (
     <div className="task-wrapper">
