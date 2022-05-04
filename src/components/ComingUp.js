@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../Context";
 import { addDays } from "date-fns";
-import ListItem from "./ListItem";
+
 import ComingUpListItem from "./ComingUpListItem";
 
 function ComingUp() {
-  const { lists, markTaskComplete, setActiveList } = useContext(Context);
+  const { lists, markTaskComplete } = useContext(Context);
   const [allTasks, setAllTasks] = useState([]);
 
   // useEffect(() => {

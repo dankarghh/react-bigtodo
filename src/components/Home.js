@@ -18,13 +18,11 @@ export default function Home() {
           return (
             <div className="home__task">
               <div className="home__task-details">
-                <div className="home__task-details--left">
-                  <img
-                    className="task-icon"
-                    alt="icon"
-                    src={icon}
-                    onClick={e => markTaskComplete(e, task.id)}
-                  ></img>
+                <div
+                  className="home__task-details--left"
+                  onClick={e => markTaskComplete(e, task.id)}
+                >
+                  <img className="task__icon" alt="icon" src={icon}></img>
                   <p className="home__task-name">{task.taskName}</p>
                 </div>
                 <p className="home__task-date">{task.dueDate}</p>

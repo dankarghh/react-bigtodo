@@ -18,7 +18,7 @@ export default function ListItem(props) {
             <div className="task__main-elements-left">
               <img
                 alt="complete icon"
-                className="task-icon"
+                className="task__icon"
                 src={props.icon}
                 onClick={e => props.markTaskComplete(e, props.id)}
               ></img>
@@ -39,13 +39,13 @@ export default function ListItem(props) {
               ></input>
               <img
                 alt="edit icon"
-                className="task-icon"
+                className="task__icon"
                 src="./edit.svg"
                 onClick={e => setEditListItem(!editListItem)}
               ></img>
               <img
                 alt="delete icon"
-                className="task-icon"
+                className="task__icon"
                 src="./delete.svg"
                 onClick={e => props.deleteTask(e, props.id)}
               ></img>
@@ -61,12 +61,14 @@ export default function ListItem(props) {
       ) : (
         <div>
           <div className="task__main-elements">
-            <div className="task__main-elements-left">
+            <div
+              className="task__main-elements-left"
+              onClick={e => props.markTaskComplete(e, props.id)}
+            >
               <img
                 alt="complete icon"
-                className="task-icon"
+                className="task__icon"
                 src={props.icon}
-                onClick={e => props.markTaskComplete(e, props.id)}
               ></img>
               <p className="task__task-name">{props.taskName}</p>
             </div>
@@ -75,13 +77,13 @@ export default function ListItem(props) {
               <p className="task__task-date">{props.dueDate}</p>
               <img
                 alt="edit icon"
-                className="task-icon"
+                className="task__icon"
                 src="./edit.svg"
                 onClick={e => setEditListItem(!editListItem)}
               ></img>
               <img
                 alt="delete icon"
-                className="task-icon"
+                className="task__icon"
                 src="./delete.svg"
                 onClick={e => props.deleteTask(e, props.id)}
               ></img>

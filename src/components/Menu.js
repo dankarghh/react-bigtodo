@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../Context";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,7 +6,7 @@ function Menu(props) {
   const {
     createNewList,
     lists,
-    setLists,
+
     setActiveList,
     activeList,
     setActiveListTaskList,
@@ -41,30 +41,16 @@ function Menu(props) {
     navigate("/list");
   }
 
-  const windowSize = useRef(window.innerWidth);
-  console.log(windowSize);
-
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 600) {
-        setMobileScreen(true);
-      } else {
-        setMobileScreen(false);
-      }
-      console.log("resized");
-    }
-  }, [windowSize]);
-
   function handleToggleMenu(e) {
     if (mobileScreen === true) {
       setToggleMenuOpen(prevState => !prevState);
-      document.querySelector(".menu").classList.toggle("menu-open");
-      if (!document.querySelector(".menu").classList.contains("menu-open")) {
+      document.querySelector(".menu").classList.toggle("menu--open");
+      if (!document.querySelector(".menu").classList.contains("menu--open")) {
         document.querySelectorAll(".menu-item__heading").forEach(item => {
           item.classList.add("hidden");
         });
       }
-      if (!document.querySelector(".menu").classList.contains("menu-open")) {
+      if (!document.querySelector(".menu").classList.contains("menu--open")) {
         document.querySelector("form").classList.add("hidden");
       }
     }
@@ -72,15 +58,19 @@ function Menu(props) {
 
   const listElements = lists.map(list => {
     const style =
-      window.location.pathname == "/list" && list.id === activeList.id
-        ? "menu-item menu-item--active menu-list-item"
-        : "menu-item menu-list-item";
+      window.location.pathname === "/list" && list.id === activeList.id
+        ? "menu__item menu__item--active menu__list-item"
+        : "menu__item menu__list-item";
 
     return (
       <Link to="/list">
         <div className={style} onClick={() => selectList(list)} key={list.id}>
-          <h2 className="menu-list  menu-item__heading">
-            <img src="./radiofilled.svg" className="menu-list-icon" />{" "}
+          <h2 className="menu__list  menu__item-heading">
+            <img
+              src="./radiofilled.svg"
+              className="menu__list-icon"
+              alt="radiobutton"
+            />{" "}
             {list.name}
           </h2>
         </div>
@@ -89,30 +79,30 @@ function Menu(props) {
   });
 
   return (
-    <div className={mobileScreen ? "menu menu-closed" : "menu"}>
+    <div className={mobileScreen ? "menu menu--closed" : "menu"}>
       {!mobileScreen ? null : (
         <div
-          className="menu-item menu-item-toggler"
+          className="menu__item menu__item-toggler"
           onClick={e => handleToggleMenu(e)}
         >
-          <img alt="menu icon" className="menu-icon" src="./menu.svg" />
+          <img alt="menu icon" className="menu__icon" src="./menu.svg" />
         </div>
       )}
       <Link to="/">
         <div
           className={
-            window.location.pathname == "/"
-              ? "menu-item menu-item--active"
-              : "menu-item"
+            window.location.pathname === "/"
+              ? "menu__item menu__item--active"
+              : "menu__item"
           }
           onClick={toggleMenuOpen ? e => handleToggleMenu() : null}
         >
-          <img alt="home icon" className="menu-icon" src="./home.svg" />
+          <img alt="home icon" className="menu__icon" src="./home.svg" />
           <h2
             className={
               toggleMenuOpen
-                ? "menu-item__heading"
-                : "menu-item__heading hidden"
+                ? "menu__item-heading"
+                : "menu__item-heading hidden"
             }
           >
             Overview
@@ -122,18 +112,22 @@ function Menu(props) {
       <Link to="/comingup">
         <div
           className={
-            window.location.pathname == "/comingup"
-              ? "menu-item menu-item--active"
-              : "menu-item"
+            window.location.pathname === "/comingup"
+              ? "menu__item menu__item--active"
+              : "menu__item"
           }
           onClick={toggleMenuOpen ? e => handleToggleMenu() : null}
         >
-          <img alt="calender icon" className="menu-icon" src="./calender.svg" />
+          <img
+            alt="calender icon"
+            className="menu__icon"
+            src="./calender.svg"
+          />
           <h2
             className={
               toggleMenuOpen && !mobileScreen
-                ? "menu-item__heading"
-                : "menu-item__heading hidden"
+                ? "menu__item-heading"
+                : "menu__item-heading hidden"
             }
           >
             {" "}
@@ -143,21 +137,25 @@ function Menu(props) {
       </Link>
       {toggleMenuOpen ? (
         <div>
-          <div className="menu-item">
-            <img alt="list icon" className="menu-icon" src="./list.svg" />
-            <h2 className="menu-item__heading">Lists</h2>
+          <div className="menu__item">
+            <img alt="list icon" className="menu__icon" src="./list.svg" />
+            <h2 className="menu__item-heading">Lists</h2>
           </div>
           {listElements}
           <form onSubmit={e => handleAddNewList(e, newListName)}>
-            <div className="menu-new-list">
+            <div className="menu__new-list">
               <input
-                className="menu-new-list-input "
+                className="menu__new-list-input "
                 name={newListName}
                 value={newListName}
                 placeholder="new list name"
                 onChange={e => setNewListName(e.target.value)}
               ></input>
-              <img className="menu-new-list-icon" src="./add-new.svg" />
+              <img
+                alt="home icon"
+                className="menu__new-list-icon"
+                src="./add-new.svg"
+              />
             </div>
           </form>
         </div>

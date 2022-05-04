@@ -3,7 +3,7 @@ import { useState, useContext, useEffect, useRef } from "react";
 import { Context } from "../Context";
 import { nanoid } from "nanoid";
 import ListItem from "./ListItem";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 export default function List() {
   const {
