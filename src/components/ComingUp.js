@@ -42,7 +42,7 @@ function ComingUp() {
   });
 
   return (
-    <div className="home__container">
+    <div className="container">
       <div className="home__coming-up">
         <h1 className="section-heading">Coming up this week</h1>
         <h2 className="home__list-name">Today</h2>

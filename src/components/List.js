@@ -114,7 +114,7 @@ export default function List() {
   }
 
   return (
-    <div className="list__container">
+    <div className="container">
       {activeList ? (
         <div className="list__active-list">
           <h2
@@ -184,7 +184,7 @@ export default function List() {
           </div>
         </form>
       ) : (
-        <button className="btn btn-primary" onClick={e => setNewTaskForm(e)}>
+        <button className="btn btn-primary list__new-task-btn" onClick={e => setNewTaskForm(e)}>
           Add new Task
         </button>
       )}
