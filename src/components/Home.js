@@ -38,9 +38,12 @@ export default function Home() {
   return (
     <div className="container">
       <h1 className="section-heading">All tasks</h1>
-      {!homeElements && <p>hey</p>}
+      {lists.length < 1 ? (
+        <p className="home__no-lists">
+          No tasks!? Create your first list to get started!
+        </p>
+      ) : null}
       {homeElements}
-    
     </div>
   );
 }
