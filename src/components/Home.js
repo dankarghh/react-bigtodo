@@ -40,9 +40,11 @@ export default function Home() {
   });
 
   return (
-    <div className="home__container">
+    <div className="container">
       <h1 className="section-heading">All tasks</h1>
-      {homeElements}{" "}
+      {!homeElements && <p>hey</p>}
+      {homeElements}
+    
     </div>
   );
 }

@@ -142,7 +142,7 @@ function Menu(props) {
       </Link>
       {toggleMenuOpen ? (
         <div>
-          <div className="menu__item">
+          <div className="menu__item-lists">
             <img alt="list icon" className="menu__icon" src="./list.svg" />
             <h2 className="menu__item-heading">Lists</h2>
           </div>

@@ -108,7 +108,7 @@ p {
 /* Define styles for Menu */
 
 .menu {
-  width: 200px;
+  width: 250px;
   background-color: #dddbdb;
   height: 100%;
   padding: 0rem;
@@ -139,6 +139,12 @@ p {
 }
 
 .menu__item {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.menu__item-lists {
   font-size: 1.4rem;
   display: flex;
   align-items: center;
@@ -193,9 +199,12 @@ p {
 
 .task__icon {
   width: 16px;
+  cursor: pointer;
 }
 .delete-list-icon {
-  height: 1.6rem;
+  height: 1.8rem;
+  padding-left: 1rem;
+  cursor: pointer;
 }
 .task-wrapper {
   padding: 1rem 0rem 0rem;
@@ -230,8 +239,8 @@ p {
   font-size: 1.4rem;
 }
 
-.list__container {
-  width: 900px;
+.container {
+  width: 1100px;
   padding: 2rem;
   padding-top: 3rem;
 }
@@ -243,6 +252,9 @@ p {
   align-content: center;
   padding-bottom: 1rem;
 }
+.list__new-task-btn {
+  margin-top: 2rem;
+}
 .list__active-list {
   padding-bottom: 1rem;
 }
@@ -252,13 +264,16 @@ p {
 .home__task-name--complete {
   text-decoration: line-through;
 }
-
+.home__no-lists {
+  text-align: center;
+  padding-top: 2rem;
+}
 /* Define styles for homepage component  */
-.home__container {
-  width: 900px;
+/* .home__container {
+  width: 1100px;
   padding: 2rem;
   padding-top: 3rem;
-}
+} */
 .home__list {
   padding-bottom: 1rem;
 }
@@ -383,6 +398,10 @@ input:focus {
     position: absolute;
   } */
   .menu__item h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+  .menu__item-lists h2 {
     font-size: 1.6rem;
     font-weight: 600;
   }
