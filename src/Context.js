@@ -21,11 +21,7 @@ import { Link } from "react-router-dom";
 const Context = React.createContext();
 
 function ContextProvider(props) {
-  const [user, setUser] = useState(null);
-  // const LOCAL_STORAGE_LISTS = JSON.parse(localStorage.getItem("lists"));
-  // const LOCAL_STORAGE_ACTIVE_LIST = JSON.parse(
-  //   localStorage.getItem("activeList")
-  // );
+  const [user, setUser] = useState("");
   const [lists, setLists] = useState([]);
   const [activeList, setActiveList] = useState([]);
   const [activeListTaskList, setActiveListTaskList] = useState([]);
@@ -61,10 +57,19 @@ function ContextProvider(props) {
     getLists();
   }, [user]);
 
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = loggedInUser;
+      setUser(foundUser);
+    }
+  }, []);
+
   async function signInWithGoogle() {
     signInWithPopup(auth, provider)
       .then(result => {
         setUser(result.user);
+        localStorage.setItem("user", result.user);
       })
       .catch(err => console.log(err));
   }

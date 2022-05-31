@@ -15,12 +15,10 @@ function App() {
   const [homepage, setHomepage] = useState(false);
   const user = useContext(Context);
 
-  console.log(user);
-
   return (
     <div className="App">
       <Header homepage={homepage} />
-      {user.user ? (
+      {!user === "" ? (
         <div className="main">
           <Menu setHomepage={setHomepage} />
           <Routes>
