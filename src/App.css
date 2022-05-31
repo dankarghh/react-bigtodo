@@ -262,7 +262,10 @@ p {
 .home__task-name--complete {
   text-decoration: line-through;
 }
-
+.home__no-lists {
+  text-align: center;
+  padding-top: 2rem;
+}
 /* Define styles for homepage component  */
 /* .home__container {
   width: 1100px;
