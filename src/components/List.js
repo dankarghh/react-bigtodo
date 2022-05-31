@@ -99,7 +99,6 @@ export default function List() {
         : "./incomplete_task.svg";
       return (
         <ListItem
-          key={task.id}
           id={task.id}
           taskName={task.taskName}
           notes={task.notes}
