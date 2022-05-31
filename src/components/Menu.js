@@ -15,9 +15,7 @@ function Menu(props) {
   const [toggleMenuOpen, setToggleMenuOpen] = useState(
     window.innerWidth < 600 ? false : true
   );
-  const [mobileScreen, setMobileScreen] = useState(
-    window.innerWidth < 600 ? true : false
-  );
+  const [mobileScreen] = useState(window.innerWidth < 600 ? true : false);
   const navigate = useNavigate();
 
   function selectList(list) {
