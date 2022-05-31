@@ -6,7 +6,7 @@ function Menu(props) {
   const {
     createNewList,
     lists,
-
+    users,
     setActiveList,
     activeList,
     setActiveListTaskList,
@@ -64,7 +64,12 @@ function Menu(props) {
 
     return (
       <Link to="/list">
-        <div className={style} onClick={() => selectList(list)} key={list.id}>
+        <div
+          key={list.id}
+          className={style}
+          onClick={() => selectList(list)}
+          key={list.id}
+        >
           <h2 className="menu__list  menu__item-heading">
             <img
               src="./radiofilled.svg"

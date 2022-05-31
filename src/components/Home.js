@@ -6,7 +6,11 @@ export default function Home() {
 
   const homeElements = lists.map(list => {
     return (
-      <div className="home__list" onMouseEnter={e => setActiveList(list)}>
+      <div
+        key={list.id}
+        className="home__list"
+        onMouseEnter={e => setActiveList(list)}
+      >
         <h2 className="home__list-name">{list.name}</h2>
         {list.taskList.length < 1 ? (
           <p className="home__no-task">No tasks yet</p>
