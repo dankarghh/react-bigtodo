@@ -108,7 +108,13 @@ function Menu(props) {
 
   const comingUpTotal =
     thisWeeksTasks.length > 0 ? (
-      <span className="menu__list-circle menu__list-circle--coming-up">
+      <span
+        className={
+          mobileScreen && !toggleMenuOpen
+            ? "menu__list-circle menu__list-circle--coming-up menu__list-circle--mobile "
+            : "menu__list-circle menu__list-circle--coming-up"
+        }
+      >
         {thisWeeksTasks.length}
       </span>
     ) : null;

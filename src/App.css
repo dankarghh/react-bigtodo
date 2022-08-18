@@ -119,7 +119,7 @@ p {
 
 .menu--open {
   width: 300px;
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 .menu--open h2 {
   display: block;
@@ -143,6 +143,7 @@ p {
   align-items: center;
   padding: 1rem;
   flex-direction: row;
+  position: relative;
 }
 .menu__item-lists {
   font-size: 1.4rem;
@@ -153,7 +154,11 @@ p {
 .menu__icon-done {
   width: 20px;
 }
-
+.menu__list-circle--mobile {
+  position: absolute;
+  right: 9px;
+  top: 20px;
+}
 .menu__list-circle--incomplete {
   background: rgb(133, 133, 192);
 }
