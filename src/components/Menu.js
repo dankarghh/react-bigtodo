@@ -82,6 +82,7 @@ function Menu(props) {
   }
 
   //Calculating incomplete coming up tasks
+  console.log(thisWeeksTasks);
 
   useEffect(() => {
     let newList = [];
@@ -94,9 +95,12 @@ function Menu(props) {
     const totals = newList.filter(task => {
       return (
         (task.completed === false &&
+          task.dueDate !== "" &&
           task.dueDate <
             addDays(new Date(today), 7).toISOString().slice(0, 10)) ||
-        (task.completed === false && task.dueDate === today)
+        (task.completed === false &&
+          task.dueDate !== "" &&
+          task.dueDate === today)
       );
     });
     setThisWeeksTasks(totals);
