@@ -18,7 +18,7 @@ function Menu(props) {
   );
   const [mobileScreen] = useState(window.innerWidth < 600 ? true : false);
   const navigate = useNavigate();
-  const [allTasks, setAllTasks] = useState([]);
+
   const [thisWeeksTasks, setThisWeeksTasks] = useState([]);
 
   function selectList(list) {
@@ -63,13 +63,14 @@ function Menu(props) {
       if (list.taskList[i].completed === false) {
         count = count + 1;
       } else {
+        // eslint-disable-next-line no-self-assign
         count = count;
       }
     }
     if (count === 0) {
       return (
         <span className="menu__list-circle menu__list-circle--complete">
-          <img className="menu__icon-done" src="./done.svg" />
+          <img className="menu__icon-done" src="./done.svg" alt="icon" />
         </span>
       );
     } else
