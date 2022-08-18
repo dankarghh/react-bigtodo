@@ -1,7 +1,11 @@
-*,
-*::after,
-*::before {
+div {
   box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 html {
@@ -26,6 +30,8 @@ p {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
+  min-height: 100vh;
 }
 
 body {
@@ -71,7 +77,9 @@ p {
 
   color: #375c43;
 }
-
+.btn--save {
+  display: none;
+}
 /* Define styles for header */
 
 .header {
@@ -469,4 +477,25 @@ input:focus {
 
 .section-heading {
   text-align: center;
+}
+
+@media screen and (max-width: 400px) {
+  form .task__main-elements {
+    flex-direction: column;
+  }
+
+  .task__task-notes {
+    margin-left: 0px;
+  }
+  .btn--save {
+    padding: 0.5rem 2rem;
+    margin-top: 5px;
+    display: block;
+  }
+  .task__main-elements-left {
+    padding-bottom: 5px;
+  }
+  form .task__icon {
+    display: none;
+  }
 }

@@ -13,7 +13,7 @@ export default function ListItem(props) {
   return (
     <div className="task-wrapper">
       {editListItem ? (
-        <form>
+        <form onSubmit={e => setEditListItem(!editListItem)}>
           <div className="task__main-elements">
             <div className="task__main-elements-left">
               <img
@@ -55,8 +55,15 @@ export default function ListItem(props) {
             className="task__task-notes"
             onChange={e => props.handleChangeTask(e, props.id)}
             name="notes"
+            placeholder="notes (optional)"
             value={props.notes}
           ></input>
+          <button
+            onClick={e => setEditListItem(!editListItem)}
+            className="btn btn-secondary btn--save"
+          >
+            Save
+          </button>
         </form>
       ) : (
         <div>
