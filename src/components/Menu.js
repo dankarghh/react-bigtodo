@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../Context";
 import { Link, useNavigate } from "react-router-dom";
+import { addDays } from "date-fns";
 
 function Menu(props) {
   const {
     createNewList,
     lists,
-
+    activeListTaskList,
     setActiveList,
     activeList,
     setActiveListTaskList,
@@ -17,6 +18,8 @@ function Menu(props) {
   );
   const [mobileScreen] = useState(window.innerWidth < 600 ? true : false);
   const navigate = useNavigate();
+  const [allTasks, setAllTasks] = useState([]);
+  const [thisWeeksTasks, setThisWeeksTasks] = useState([]);
 
   function selectList(list) {
     setActiveList(list);
@@ -54,6 +57,57 @@ function Menu(props) {
     }
   }
 
+  function calculateIncompleteTasks(list) {
+    let count = 0;
+    for (let i = 0; i < list.taskList.length; i++) {
+      if (list.taskList[i].completed === false) {
+        count = count + 1;
+      } else {
+        count = count;
+      }
+    }
+    if (count === 0) {
+      return (
+        <span className="menu__list-circle menu__list-circle--complete">
+          <img className="menu__icon-done" src="./done.svg" />
+        </span>
+      );
+    } else
+      return (
+        <span className="menu__list-circle menu__list-circle--incomplete">
+          {count}
+        </span>
+      );
+  }
+
+  //Calculating incomplete coming up tasks
+
+  useEffect(() => {
+    let newList = [];
+    lists.forEach(list => {
+      list.taskList.forEach(taskList => {
+        newList.push(taskList);
+      });
+    });
+    const today = new Date().toISOString().slice(0, 10);
+    const totals = newList.filter(task => {
+      return (
+        (task.completed === false &&
+          task.dueDate <
+            addDays(new Date(today), 7).toISOString().slice(0, 10)) ||
+        (task.completed === false && task.dueDate === today)
+      );
+    });
+    setThisWeeksTasks(totals);
+  }, [lists, activeListTaskList]);
+
+  const comingUpTotal =
+    thisWeeksTasks.length > 0 ? (
+      <span className="menu__list-circle menu__list-circle--coming-up">
+        {thisWeeksTasks.length}
+      </span>
+    ) : null;
+
   const listElements = lists.map(list => {
     const style =
       window.location.pathname === "/list" && list.id === activeList.id
@@ -71,6 +125,8 @@ function Menu(props) {
             />{" "}
             {list.name}
           </h2>
+
+          {calculateIncompleteTasks(list)}
         </div>
       </Link>
     );
@@ -131,6 +187,7 @@ function Menu(props) {
             {" "}
             Coming up
           </h2>
+          {comingUpTotal}
         </div>
       </Link>
       {toggleMenuOpen ? (
@@ -150,6 +207,7 @@ function Menu(props) {
                 onChange={e => setNewListName(e.target.value)}
               ></input>
               <img
+                onClick={e => handleAddNewList(e, newListName)}
                 alt="home icon"
                 className="menu__new-list-icon"
                 src="./add-new.svg"

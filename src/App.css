@@ -142,12 +142,36 @@ p {
   display: flex;
   align-items: center;
   padding: 1rem;
+  flex-direction: row;
 }
 .menu__item-lists {
   font-size: 1.4rem;
   display: flex;
   align-items: center;
   padding: 1rem;
+}
+.menu__icon-done {
+  width: 20px;
+}
+
+.menu__list-circle--incomplete {
+  background: rgb(133, 133, 192);
+}
+.menu__list-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: white;
+  margin-left: 5px;
+}
+.menu__list-circle--complete {
+  background-color: #375c43;
+}
+.menu__list-circle--coming-up {
+  background-color: #6d376e;
 }
 
 .menu__item:hover {
@@ -174,6 +198,7 @@ p {
   margin-left: 1rem;
   margin-right: 1rem;
   min-width: 150px;
+  padding-left: 2rem;
 }
 .menu__item--active {
   background-color: #b4b3b3;
@@ -181,7 +206,7 @@ p {
 .menu__new-list-input::placeholder {
   font-size: 1.4rem;
   font-family: "Poppins", sans-serif;
-  padding-left: 1rem;
+  /* padding-left: 1rem; */
 }
 .menu__new-list-icon {
   position: absolute;
