@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { Context } from "../Context";
 import { nanoid } from "nanoid";
-import ListItem from "./ListItem";
+import ListItem from "./ListItem.tsx";
 import { useNavigate } from "react-router";
 
 export default function List() {
@@ -13,6 +13,7 @@ export default function List() {
     activeListTaskList,
     setActiveListTaskList,
   } = useContext(Context);
+
   const [newTaskName, setNewTaskName] = useState("");
   const [newTaskNotes, setNewTaskNotes] = useState("");
   const [newTaskDate, setNewTaskDate] = useState("");
@@ -184,7 +185,10 @@ export default function List() {
           </div>
         </form>
       ) : (
-        <button className="btn btn-primary list__new-task-btn" onClick={e => setNewTaskForm(e)}>
+        <button
+          className="btn btn-primary list__new-task-btn"
+          onClick={e => setNewTaskForm(e)}
+        >
           Add new Task
         </button>
       )}

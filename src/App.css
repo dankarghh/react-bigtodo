@@ -79,6 +79,8 @@ p {
   padding: 0.1rem 1rem;
   margin: 0;
   color: white;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header__heading {

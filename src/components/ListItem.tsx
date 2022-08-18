@@ -1,7 +1,26 @@
-import { useEffect, useState, useContext } from "react";
+import React from "react";
+import { useEffect, useState, useContext, FC } from "react";
 import { Context } from "../Context";
 
-export default function ListItem(props) {
+interface Props {
+  id: string;
+  taskName: string;
+  notes: string;
+  icon: string;
+  dueDate: string;
+  markTaskComplete: (
+    e: React.MouseEvent<HTMLImageElement> | React.MouseEvent<HTMLDivElement>,
+    id: string
+  ) => void;
+  deleteTask: (e: React.MouseEvent<HTMLImageElement>, id: string) => void;
+  handleChangeTask: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    id: string
+  ) => void;
+  newTaskForm: boolean;
+}
+
+const ListItem: FC<Props> = props => {
   const [editListItem, setEditListItem] = useState(false);
 
   const { activeList } = useContext(Context);
@@ -94,4 +113,5 @@ export default function ListItem(props) {
       )}
     </div>
   );
-}
+};
+export default ListItem;

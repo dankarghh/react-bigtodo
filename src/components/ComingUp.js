@@ -8,9 +8,7 @@ function ComingUp() {
   const { lists, markTaskComplete } = useContext(Context);
   const [allTasks, setAllTasks] = useState([]);
 
-  // useEffect(() => {
-  //   setActiveList(null);
-  // }, []);
+
 
   useEffect(() => {
     let newList = [];

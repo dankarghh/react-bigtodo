@@ -7,6 +7,7 @@ import { useState } from "react";
 import Home from "./components/Home";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
+import Login from "./components/Login";
 
 function App() {
   const [homepage, setHomepage] = useState(false);
@@ -17,6 +18,7 @@ function App() {
       <div className="main">
         <Menu setHomepage={setHomepage} />
         <Routes>
+          <Route exact path="/login" element={<Login />} />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/comingup" element={<ComingUp />} />
           <Route path="/list" element={<List />} />

@@ -9,9 +9,7 @@ function ContextProvider(props) {
     localStorage.getItem("activeList")
   );
   const [lists, setLists] = useState(LOCAL_STORAGE_LISTS || []);
-  // const navigate = useNavigate();
 
-  // const [lists, setLists] = useState([]);
 
   const [activeList, setActiveList] = useState(
     LOCAL_STORAGE_ACTIVE_LIST || null
@@ -31,7 +29,7 @@ function ContextProvider(props) {
     };
     setActiveList(newListItem);
     setLists([...lists, newListItem]);
-    // navigate("/list");
+
   }
   function markTaskComplete(event, id) {
     const selectedTask = activeList.taskList.find(task => task.id === id);
